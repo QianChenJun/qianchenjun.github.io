@@ -1,0 +1,182 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Stars
+subtitle: 'Under the starry sky.'
+description: '一个寄托自己情感的小地方~'
+keywords:
+author: 小小千辰
+language: zh-CN
+timezone: ''
+
+# URL
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+url: https://www.qianchen.xyz/
+root: /
+# permalink: :year/:month/:day/:title/  # 旧的注释掉
+# permalink_defaults:                   # 旧的注释掉
+permalink: posts/:abbrlink/
+abbrlink:
+  alg: crc32 #support crc16(default) and crc32
+  rep: hex #support dec(default) and hex
+  drafts: false #(true)Process draft,(false)Do not process draft
+  # Generate categories from directory-tree
+  # depth: the max_depth of directory-tree you want to generate, should > 0
+  auto_category:
+    enable: false #默认为 true， 手改改为 false
+    depth:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: false
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  enable: true
+  preprocess: true
+  line_number: false # 关闭行号
+  tab_replace: ''
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## updated_option supports 'mtime', 'date', 'empty'
+updated_option: 'mtime'
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the 'source/' folder
+include:
+exclude:
+ignore:
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: yun
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: git
+  repo: https://github.com/QianChenJun/qianchenjun.github.io # 比如：https://github.com/YunYouJun/yunyoujun.github.io
+  branch: master # 默认使用 master 分支
+  message: Update Hexo Static Content # 你可以自定义此次部署更新的说明
+
+# live2d配置(人物模型)
+live2d:
+  enable: true
+  # 推荐使用 jsdelivr 的 CDN 来加载
+  scriptFrom: jsdelivr
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  debug: false
+  model:
+    # 推荐使用 CDN 来加载模型
+    use: https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json
+    # use: https://cdn.jsdelivr.net/gh/tokyohost/live2d_api/model/HyperdimensionNeptunia/blanc_classic/textures.1024/01.png
+  display:
+    position: right
+    width: 150
+    height: 300
+  mobile:
+    show: true
+  react:
+    opacity: 0.9
+  dialog:
+    # 是否开启对话框
+    enable: true
+    # 是否使用一言
+    hitokoto: true
+
+# 音乐播放器
+aplayer:
+  cdn: https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js
+  style_cdn: https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css
+  meting: true
+  meting_cdn: https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js
+  asset_inject: false
+  
+# Search Config
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+
+# 搜索功能
+# algolia:
+#   applicationID: 'V4NRQWYX0X'
+#   apiKey: 'aa5bf59c4402cc7d8bd7913b5ab6b99d'
+#   indexName: 'hexo-blog'
+
+
+algolia:
+  applicationID: "V4NRQWYX0X"
+  apiKey: "aa5bf59c4402cc7d8bd7913b5ab6b99d"
+  adminApiKey: "a4c963fd06f0fed3f217b165246ccea3"
+  chunkSize: 5000
+  indexName: "hexo-blog"
+  fields:
+    - content:strip:truncate,0,500
+    - excerpt:strip
+    - gallery
+    - permalink
+    - photos
+    - slug
+    - tags
+    - title
