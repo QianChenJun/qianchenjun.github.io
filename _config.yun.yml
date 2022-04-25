@@ -326,8 +326,9 @@ footer:
     prefix: 本博客已萌萌哒地运行
     suffix: (●'◡'●)
     start_time: "2021-08-26T00:00:00"
-  # 自定义文本（可以是html结构）
-  # custom_text: Hosted by <a href="https://pages.coding.me" rel="noopener" target="_blank">Coding Pages</a>
+  beian:
+    enable: true
+    icp: 豫ICP备2022010421号
 
 # 一言
 say:
