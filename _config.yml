@@ -117,7 +117,7 @@ deploy:
         # 提交到服务器
         hexo: root@49.232.16.126:/home/git/blog.git,master
   # branch: master # 默认使用 master 分支
-  message: :pencil: update content # 你可以自定义此次部署更新的说明
+  message: Update Hexo Static Content # 你可以自定义此次部署更新的说明
 
 # live2d配置(人物模型)
 live2d:
