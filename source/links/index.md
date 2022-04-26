@@ -6,12 +6,12 @@ keywords: 链接
 description: 千辰的小伙伴们
 comments: true
 links:
-  - url: https://llii-iill.github.io/
-    avatar: https://cdn.jsdelivr.net/gh/YunYouJun/yunyoujun.github.io/images/avatar.jpg
+  - url: https://cb.qianchen.xyz/
+    avatar: https://cb.qianchen.xyz/img/avatar.png
     name: 冉宝
     blog: 大宝贝的Blog
     desc: 大宝贝~
-    color: "	#E6E6FA" # 代表色
+    color: "#E6E6FA" # 代表色
     email: 😆
   - url: https://yunyoujun.cn
     avatar: https://cdn.jsdelivr.net/gh/YunYouJun/yunyoujun.github.io/images/avatar.jpg
