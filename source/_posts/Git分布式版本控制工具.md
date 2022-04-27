@@ -57,7 +57,7 @@ b、分布式版本控制工具
 	有能力高效管理类似 Linux 内核一样的超大规模项目（速度和数据量）
 ```
 
-![image-20211031115201670](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241829241.png)_Git工作图示_
+![image-20211031115201670](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204262021579.png)_Git工作图示_
 
 <br>
 

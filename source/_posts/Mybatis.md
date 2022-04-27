@@ -822,11 +822,11 @@ select <include refid="empColumns"></include> from t_emp
 
 #### 8.1.4 执行MBG插件的generate目标
 
-![1647658068122](../AppData/Roaming/Typora/typora-user-images/1647658068122.png)
+![202204261939748](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204262024590.png)
 
 效果：
 
-![1647658078421](../AppData/Roaming/Typora/typora-user-images/1647658078421.png)
+![202204261939490](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204262024804.png)
 
 ### 8.2 QBC查询
 
