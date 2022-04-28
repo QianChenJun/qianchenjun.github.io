@@ -142,9 +142,9 @@ banner:
 # 图片背景
 bg_image:
   enable: true
-  url: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@1.0/img/light.jpg # recomend image related to your mode
+  url: /images/light.png # recomend image related to your mode
   # dark: https://gitee.com/thousand_star/cloudimage/raw/master/img/10.jpg
-  dark: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@1.0/img/dark.jpg
+  dark: /images/dark.png
   # blur: 30px
   opacity: 0.9
 
@@ -329,7 +329,7 @@ say:
   src: /js/say.js
   # https://developer.hitokoto.cn/sentence/
   hitokoto:
-    enable: true
+    enable: false
     api: https://v1.hitokoto.cn
 
 # 公祭日
