@@ -134,9 +134,9 @@ banner:
     enable: true
     icon: icon-arrow-down-s-line
 # 它将显示在所有文章卡片的最上方，标语的下方。
-notice:
-  enable: true
-  content: Thanks for watching my blog.
+# notice:
+#   enable: true
+#   content: Thanks for watching my blog.
 
 
 # 图片背景
@@ -149,25 +149,25 @@ bg_image:
   opacity: 0.9
 
 # 搜索背景
-search:
-  modal: true
-  bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
-  dark_bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/mountain-blur-30px.jpg
-  placeholder: 想要搜些什么？
+# search:
+#   modal: true
+#   bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
+#   dark_bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/mountain-blur-30px.jpg
+#   placeholder: 想要搜些什么？
 
 # 随机多边形背景
-trianglify:
-  enable: false
-  cellSize: 75
-  width: 800
-  height: 600
-  palette: '["YlGnBu", "GnBu", "Purples", "Blues", "YlGn", "RdYlGn", "Oranges"]'
-  opacity: 0.3
+# trianglify:
+#   enable: false
+#   cellSize: 75
+#   width: 800
+#   height: 600
+#   palette: '["YlGnBu", "GnBu", "Purples", "Blues", "YlGn", "RdYlGn", "Oranges"]'
+#   opacity: 0.3
 
 # 鼠标点击特效(小爱心)
 fireworks:
   enable: true
-  src: /js/ui/love.js
+  src: /js/ui/fireworks.js
 
 # 鼠标指针
 cursor:
@@ -175,9 +175,6 @@ cursor:
   default: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@1.0/img/Arrow.cur
   pointer: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@1.0/img/Link Select.cur
   text: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@1.0/img/Text.cur
-  # default: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/pointer.cur
-  # pointer: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/link.cur
-  # text: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/text.cur
 
 # 侧边栏
 sidebar:
@@ -186,8 +183,8 @@ sidebar:
   # dark_bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn@master/img/bg/dark-alpha-stars-timing-1.webp
   bg_position: bottom 1rem center
   tagcloud:
-    enable: false
-    amount: 20
+    enable: true
+    amount: 15
 
 
 # 导航
@@ -277,12 +274,6 @@ post_meta:
   categories: true
   tags: true
 
-# 文章编辑功能
-# post_edit:
-#   enable: true
-#   url: https://github.com/YunYouJun/yunyoujun.github.io/tree/hexo/source/
-
-
 
 # 代码块一键复制
 codeblock:
@@ -332,7 +323,7 @@ footer:
 
 # 一言
 say:
-  enable: false
+  enable: true
   api: https://cdn.jsdelivr.net/gh/ElpsyCN/say@gh-pages/sentences.json
   # src is the script
   src: /js/say.js
@@ -398,7 +389,7 @@ local_search:
   src: /js/search/local-search.js
 
 algolia_search:
-  enable: true
+  enable: false
   src: /js/search/algolia-search.js
   hits:
     per_page: 8 # the number of search results per page
