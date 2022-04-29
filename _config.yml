@@ -121,7 +121,7 @@ deploy:
 
 # live2d配置(人物模型)
 live2d:
-  enable: true
+  enable: false
   # 推荐使用 jsdelivr 的 CDN 来加载
   scriptFrom: jsdelivr
   pluginRootPath: live2dw/
@@ -169,18 +169,18 @@ search:
 #   indexName: 'hexo-blog'
 
 
-algolia:
-  applicationID: "V4NRQWYX0X"
-  apiKey: "aa5bf59c4402cc7d8bd7913b5ab6b99d"
-  adminApiKey: "a4c963fd06f0fed3f217b165246ccea3"
-  chunkSize: 5000
-  indexName: "hexo-blog"
-  fields:
-    - content:strip:truncate,0,500
-    - excerpt:strip
-    - gallery
-    - permalink
-    - photos
-    - slug
-    - tags
-    - title
+# algolia:
+#   applicationID: "V4NRQWYX0X"
+#   apiKey: "aa5bf59c4402cc7d8bd7913b5ab6b99d"
+#   adminApiKey: "a4c963fd06f0fed3f217b165246ccea3"
+#   chunkSize: 5000
+#   indexName: "hexo-blog"
+#   fields:
+#     - content:strip:truncate,0,500
+#     - excerpt:strip
+#     - gallery
+#     - permalink
+#     - photos
+#     - slug
+#     - tags
+#     - title

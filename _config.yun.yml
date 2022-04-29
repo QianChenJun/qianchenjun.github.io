@@ -125,7 +125,7 @@ banner:
   enable: true
   title: 千辰的博客
   src: /js/ui/banner.js
-  border: true
+  border: false
   # 流动云的颜色
   cloud:
     enable: true
@@ -143,26 +143,25 @@ banner:
 bg_image:
   enable: true
   url: /images/light.png # recomend image related to your mode
-  # dark: https://gitee.com/thousand_star/cloudimage/raw/master/img/10.jpg
   dark: /images/dark.png
   # blur: 30px
   opacity: 0.9
 
 # 搜索背景
-# search:
-#   modal: true
-#   bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
-#   dark_bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/mountain-blur-30px.jpg
-#   placeholder: 想要搜些什么？
+search:
+  modal: false
+  bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
+  dark_bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/mountain-blur-30px.jpg
+  placeholder: 想要搜些什么？
 
 # 随机多边形背景
-# trianglify:
-#   enable: false
-#   cellSize: 75
-#   width: 800
-#   height: 600
-#   palette: '["YlGnBu", "GnBu", "Purples", "Blues", "YlGn", "RdYlGn", "Oranges"]'
-#   opacity: 0.3
+trianglify:
+  enable: false
+  cellSize: 75
+  width: 800
+  height: 600
+  palette: '["YlGnBu", "GnBu", "Purples", "Blues", "YlGn", "RdYlGn", "Oranges"]'
+  opacity: 0.3
 
 # 鼠标点击特效(小爱心)
 fireworks:
@@ -429,10 +428,10 @@ albums:
 girls:
   enable: true
 
-baidu_push: true
+baidu_push: false
 
 google_tagmanager:
-  enable: true
+  enable: false
   id: GTM-M9KWR9L
 
 
@@ -451,3 +450,6 @@ wordcount:
   #site_pv_icon: icon-eye-line
   #page_pv: true
   #page_pv_icon: icon-eye-line
+
+# cdn:
+#   pre: https://cdn.jsdelivr.net/gh/QianChenJun/qianchenjun.github.io@latest
