@@ -203,7 +203,7 @@ menu:
       icon: icon-price-tag-3-line
   custom:
     title: 参考
-    path: https://thousand_star.gitee.io/posts/6b6eb9a8/
+    path: https://www.qianchen.xyz/posts/6b6eb9a8/
     icon: icon-book-2-line
 
 # 友链和女朋友们
@@ -289,15 +289,15 @@ reward:
   # url: https://github.com/YunYouJun/yunyoujun.github.io/issues/96
   methods:
     - name: 支付宝
-      path: https://gitee.com/thousand_star/cloudimage/raw/master/img/zfb.png
+      path: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511314.png
       color: "#00A3EE"
       icon: icon-alipay-line
     - name: QQ 支付
-      path: https://gitee.com/thousand_star/cloudimage/raw/master/img/qq.png
+      path: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511137.png
       color: "#12B7F5"
       icon: icon-qq-line
     - name: 微信支付
-      path: https://gitee.com/thousand_star/cloudimage/raw/master/img/wx.png
+      path: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511629.png
       color: "#2DC100"
       icon: icon-wechat-pay-line
 
