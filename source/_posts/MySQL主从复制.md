@@ -19,7 +19,7 @@ MySQL复制过程分为三步：
 * slave将master的binary log拷贝到它的中继日志（relay log）
 * slave重做中继日志的时间，将改变应用到自己的的数据库中
 
-![image-20220502123118613](E:\图片\typora\image-20220502123118613.png)
+![image-20220502123118613](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202205021313053.png)
 
 *<!--more-->*
 
@@ -42,7 +42,7 @@ MySQL复制过程分为三步：
 
 1. 修改MySQL数据库配置文件 `/etc/my.cnf`
 
-   ![image-20220502123727198](E:\图片\typora\image-20220502123727198.png)
+   ![image-20220502123727198](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202205021313054.png)
 
 2. 重启MySQL服务
 
@@ -64,7 +64,7 @@ MySQL复制过程分为三步：
    show master status;
    ```
 
-   ![image-20220502124443083](E:\图片\typora\image-20220502124443083.png)
+   ![image-20220502124443083](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202205021313055.png)
 
    注：上面的SQL的作用是查看Master的状态，执行完此SQL后不要再执行任何操作
 
@@ -76,7 +76,7 @@ MySQL复制过程分为三步：
 
 1. 修改MySQL数据库配置文件 `/etc/my.cnf`
 
-   ![image-20220502124639846](E:\图片\typora\image-20220502124639846.png)
+   ![image-20220502124639846](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202205021313056.png)
 
 2. 重启MySQL服务
 
@@ -100,7 +100,7 @@ MySQL复制过程分为三步：
    show slave status;
    ```
 
-   ![image-20220502125417011](E:\图片\typora\image-20220502125417011.png)
+   ![image-20220502125417011](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202205021313058.png)
 
    日志文件中显示这两个地方是Yes则代表成功
 
@@ -116,7 +116,7 @@ MySQL复制过程分为三步：
 show variables like '%server_uuid%';
 ```
 
-![image-20220502125959457](E:\图片\typora\image-20220502125959457.png)
+![image-20220502125959457](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202205021313059.png)
 
 > 这会导致主机和从机的UUID一致。
 
