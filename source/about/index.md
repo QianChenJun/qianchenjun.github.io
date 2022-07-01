@@ -37,11 +37,7 @@ aplayer: true
         <li><input disabled type="checkbox"> 跟喜欢的人做着喜欢的事过完此生</li>
     </ul>
 </details>
-
-
-
-
-
+![image-20220621181629570](E:\图片\typora\a0d24900dca540e58c69873233a53d2a呜呜漆漆-16566444737183.jpg)
 
 
 
