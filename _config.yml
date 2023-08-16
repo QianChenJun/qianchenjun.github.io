@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://www.qianchen.xyz/
+url: https://qianchenjun.github.io/
 root: /
 # permalink: :year/:month/:day/:title/  # 旧的注释掉
 # permalink_defaults:                   # 旧的注释掉
@@ -114,8 +114,6 @@ deploy:
   repo:
         # 提交到GitHub
         github: https://github.com/QianChenJun/qianchenjun.github.io,master
-        # 提交到服务器
-        hexo: root@49.232.16.126:/home/gitywt/blog.git,master
   # branch: master # 默认使用 master 分支
   message: Update Hexo Static Content # 你可以自定义此次部署更新的说明
 
