@@ -1,0 +1,935 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="小小千辰"><meta name="copyright" content="小小千辰"><meta name="generator" content="Hexo 6.1.0"><meta name="theme" content="hexo-theme-yun"><title>Servlet的使用 | Stars</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.2.4/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="mask-icon" href="/favicon.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"qianchenjun.github.io","root":"/","title":"千辰的博客","version":"1.8.11","mode":"time","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"想要搜些什么？","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://cdn.jsdelivr.net/gh/ElpsyCN/say@gh-pages/sentences.json"},"fireworks":{"colors":null},"vendors":{"darken":"https://cdn.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="Stars" type="application/atom+xml"><meta name="description" content="Servlet技术什么是Servlet Servlet 是 JavaEE 规范之一。规范就是接口 Servlet 就 JavaWeb 三大组件之一。三大组件分别是：Servlet 程序、Filter 过滤器、Listener 监听器。  Servlet 是运行在服务器上的一个 java 小程序，它可以接收客户端发送过来的请求，并响应数据给客户端。      手动实现Servlet 编写一个类去实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Servlet的使用">
+<meta property="og:url" content="https://qianchenjun.github.io/posts/43aac5ed/index.html">
+<meta property="og:site_name" content="Stars">
+<meta property="og:description" content="Servlet技术什么是Servlet Servlet 是 JavaEE 规范之一。规范就是接口 Servlet 就 JavaWeb 三大组件之一。三大组件分别是：Servlet 程序、Filter 过滤器、Listener 监听器。  Servlet 是运行在服务器上的一个 java 小程序，它可以接收客户端发送过来的请求，并响应数据给客户端。      手动实现Servlet 编写一个类去实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812409.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812012.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812099.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812700.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812268.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813931.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812184.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812603.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812954.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812427.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813024.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813977.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813553.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813198.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813787.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813235.png">
+<meta property="article:published_time" content="2021-10-01T08:37:49.000Z">
+<meta property="article:modified_time" content="2021-10-01T08:37:49.000Z">
+<meta property="article:author" content="小小千辰">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Servlet">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812409.png"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="小小千辰"><img width="96" loading="lazy" src="/images/avatar.png" alt="小小千辰"><span class="site-author-status" title="永远相信美好的事情即将发生.">😊</span></a><div class="site-author-name"><a href="/about/">小小千辰</a></div><a class="site-name" href="/about/site.html">Stars</a><sub class="site-subtitle">Under the starry sky.</sub><div class="site-desciption">一个寄托自己情感的小地方~</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">37</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">4</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">36</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://www.qianchen.xyz/posts/6b6eb9a8/" title="参考"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-book-2-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1741820016&amp;site=qq&amp;menu=yes" title="QQ 1741820016" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/QianChenJun" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/2032304962" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=532072991" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/memory-99-4" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/478733717" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://travellings.link" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-train-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">Servlet技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFServlet"><span class="toc-number">1.1.</span> <span class="toc-text">什么是Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0Servlet"><span class="toc-number">1.2.</span> <span class="toc-text">手动实现Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#url-%E5%9C%B0%E5%9D%80%E5%88%B0-Servlet-%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%AE%BF%E9%97%AE"><span class="toc-number">1.3.</span> <span class="toc-text">url 地址到 Servlet 程序的访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.4.</span> <span class="toc-text">Servlet的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GET-%E5%92%8C-POST-%E8%AF%B7%E6%B1%82%E7%9A%84%E5%88%86%E5%8F%91%E5%A4%84%E7%90%86"><span class="toc-number">1.5.</span> <span class="toc-text">GET 和 POST 请求的分发处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%BB%A7%E6%89%BFHttpServlet%E5%AE%9E%E7%8E%B0Servlet%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.6.</span> <span class="toc-text">通过继承HttpServlet实现Servlet程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-IDEA-%E5%88%9B%E5%BB%BA-Servlet-%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.7.</span> <span class="toc-text">使用 IDEA 创建 Servlet 程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF%E4%BD%93%E7%B3%BB"><span class="toc-number">1.8.</span> <span class="toc-text">Servlet类的继承体系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ServletConfig%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text">ServletConfig类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ServletConfig%E7%B1%BB%E7%9A%84%E4%B8%89%E5%A4%A7%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">ServletConfig类的三大作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ServletContext%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">ServletContext类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-ServletContext%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">什么是 ServletContext？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ServletContext-%E7%B1%BB%E7%9A%84%E5%9B%9B%E4%B8%AA%E4%BD%9C%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">ServletContext 类的四个作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.</span> <span class="toc-text">HTTP 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-HTTP-%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.1.</span> <span class="toc-text">什么是 HTTP 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E7%9A%84-HTTP-%E5%8D%8F%E8%AE%AE%E6%A0%BC%E5%BC%8F"><span class="toc-number">4.2.</span> <span class="toc-text">请求的 HTTP 协议格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GET-%E8%AF%B7%E6%B1%82"><span class="toc-number">4.2.1.</span> <span class="toc-text">GET 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST%E8%AF%B7%E6%B1%82"><span class="toc-number">4.2.2.</span> <span class="toc-text">POST请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AF%B7%E6%B1%82%E5%A4%B4%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="toc-number">4.2.3.</span> <span class="toc-text">常用的请求头的说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%AA%E4%BA%9B%E6%98%AF-GET-%E8%AF%B7%E6%B1%82%EF%BC%8C%E5%93%AA%E4%BA%9B%E6%98%AF-POST"><span class="toc-number">4.2.4.</span> <span class="toc-text">哪些是 GET 请求，哪些是 POST</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E7%9A%84-HTTP-%E5%8D%8F%E8%AE%AE%E6%A0%BC%E5%BC%8F"><span class="toc-number">4.3.</span> <span class="toc-text">响应的 HTTP 协议格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">4.4.</span> <span class="toc-text">常用的状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MIME-%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E"><span class="toc-number">4.5.</span> <span class="toc-text">MIME 类型说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HttpServletRequest-%E7%B1%BB"><span class="toc-number">5.</span> <span class="toc-text">HttpServletRequest 类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HttpServletRequest-%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">HttpServletRequest 类的常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0"><span class="toc-number">5.2.</span> <span class="toc-text">如何获取请求参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#doGet-%E8%AF%B7%E6%B1%82%E7%9A%84%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%EF%BC%9A"><span class="toc-number">5.3.</span> <span class="toc-text">doGet 请求的中文乱码解决：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#doPOST-%E8%AF%B7%E6%B1%82%E7%9A%84%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%EF%BC%9A"><span class="toc-number">5.4.</span> <span class="toc-text">doPOST 请求的中文乱码解决：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BD%AC%E5%8F%91"><span class="toc-number">5.5.</span> <span class="toc-text">请求的转发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base-%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">5.6.</span> <span class="toc-text">base 标签的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-%E4%B8%AD%E7%9A%84%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E5%92%8C%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-number">5.7.</span> <span class="toc-text">Web 中的相对路径和绝对路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web-%E4%B8%AD-x2F-%E6%96%9C%E6%9D%A0%E7%9A%84%E4%B8%8D%E5%90%8C%E6%84%8F%E4%B9%89"><span class="toc-number">5.8.</span> <span class="toc-text">web 中 &#x2F; 斜杠的不同意义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HttpServletResponse-%E7%B1%BB"><span class="toc-number">6.</span> <span class="toc-text">HttpServletResponse 类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E8%BE%93%E5%87%BA%E6%B5%81%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="toc-number">6.1.</span> <span class="toc-text">两个输出流的说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BE%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%9B%9E%E4%BC%A0%E6%95%B0%E6%8D%AE"><span class="toc-number">6.2.</span> <span class="toc-text">如何往客户端回传数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E7%9A%84%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3"><span class="toc-number">6.3.</span> <span class="toc-text">响应的乱码解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">6.4.</span> <span class="toc-text">请求重定向</span></a></li></ol></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/B%E7%AB%99/" style="font-size: 12px; color: #999">B站</a> <a href="/tags/Git/" style="font-size: 12px; color: #999">Git</a> <a href="/tags/Hexo/" style="font-size: 18px; color: #668eb3">Hexo</a> <a href="/tags/IO/" style="font-size: 12px; color: #999">IO</a> <a href="/tags/JDBC/" style="font-size: 18px; color: #668eb3">JDBC</a> <a href="/tags/JSP/" style="font-size: 12px; color: #999">JSP</a> <a href="/tags/Java/" style="font-size: 30px; color: #0078e7">Java</a> <a href="/tags/JavaWeb/" style="font-size: 24px; color: #3383cd">JavaWeb</a> <a href="/tags/Linux/" style="font-size: 24px; color: #3383cd">Linux</a> <a href="/tags/Mybatis/" style="font-size: 24px; color: #3383cd">Mybatis</a> <a href="/tags/Nginx/" style="font-size: 12px; color: #999">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px; color: #999">Redis</a> <a href="/tags/SSMP%E6%95%B4%E5%90%88/" style="font-size: 12px; color: #999">SSMP整合</a> <a href="/tags/SSM%E6%95%B4%E5%90%88/" style="font-size: 12px; color: #999">SSM整合</a> <a href="/tags/Servlet/" style="font-size: 12px; color: #999">Servlet</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://qianchenjun.github.io/posts/43aac5ed/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="小小千辰"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Stars"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Servlet的使用<a class="post-edit-link" href="https://github.com/QianChenJun/qianchenjun.github.io/tree/main/source/_posts/Servlet的使用.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <span class="post-meta-icon-text">发表于</span> <time title="创建时间：2021-10-01 16:37:49" itemprop="dateCreated datePublished" datetime="2021-10-01T16:37:49+08:00">2021-10-01</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">4.7k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">20m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%8D%83%E8%BE%B0%E7%9A%84%E5%B0%8F%E5%B0%8F%E7%AC%94%E8%AE%B0/" style="--text-color:#CC99CC" itemprop="url" rel="index"><span itemprop="text">千辰的小小笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/JavaWeb/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">JavaWeb</span></a><a class="tag-item" href="/tags/Servlet/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Servlet</span></a></span></div><div class="post-author"><span class="author-name">小小千辰</span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="Servlet技术"><a href="#Servlet技术" class="headerlink" title="Servlet技术"></a>Servlet技术</h2><h3 id="什么是Servlet"><a href="#什么是Servlet" class="headerlink" title="什么是Servlet"></a>什么是Servlet</h3><ol>
+<li>Servlet 是 JavaEE 规范之一。规范就是接口</li>
+<li>Servlet 就 JavaWeb 三大组件之一。三大组件分别是：Servlet 程序、Filter 过滤器、Listener 监听器。 </li>
+<li>Servlet 是运行在服务器上的一个 java 小程序，<strong>它可以接收客户端发送过来的请求，并响应数据给客户端</strong>。</li>
+</ol>
+<br>
+
+
+
+<h3 id="手动实现Servlet"><a href="#手动实现Servlet" class="headerlink" title="手动实现Servlet"></a>手动实现Servlet</h3><ol>
+<li>编写一个类去实现 Servlet 接口 </li>
+<li>实现 service 方法，处理请求，并响应数据 </li>
+<li>到 web.xml 中去配置 servlet 程序的访问地址</li>
+</ol>
+<blockquote>
+<p><code>Servlet</code>程序的实例代码：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloServlet</span> <span class="token keyword">implements</span> <span class="token class-name">Servlet</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/**
+    * service 方法是专门用来处理请求和响应的
+    * @param servletRequest
+    * @param servletResponse
+    * @throws ServletException
+    * @throws IOException
+    */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">service</span><span class="token punctuation">(</span><span class="token class-name">ServletRequest</span> servletRequest<span class="token punctuation">,</span> <span class="token class-name">ServletResponse</span> servletResponse<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+    	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello Servlet 被访问了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<blockquote>
+<p><code>web.xml</code> 中的配置：</p>
+</blockquote>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web-app</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://xmlns.jcp.org/xml/ns/javaee<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd<span class="token punctuation">"</span></span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>4.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- servlet 标签给 Tomcat 配置 Servlet 程序 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet</span><span class="token punctuation">></span></span>
+    	<span class="token comment">&lt;!--servlet-name 标签 Servlet 程序起一个别名（一般是类名） --></span>
+    	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>HelloServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+    	<span class="token comment">&lt;!--servlet-class 是 Servlet 程序的全类名--></span>
+    	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-class</span><span class="token punctuation">></span></span>com.atguigu.servlet.HelloServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-class</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet</span><span class="token punctuation">></span></span>
+    
+    <span class="token comment">&lt;!--servlet-mapping 标签给 servlet 程序配置访问地址--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-mapping</span><span class="token punctuation">></span></span>
+    	<span class="token comment">&lt;!--servlet-name 标签的作用是告诉服务器，我当前配置的地址给哪个 Servlet 程序使用--></span>
+    	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>HelloServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+    	<span class="token comment">&lt;!--  url-pattern 标签配置访问地址 &lt;br/> / 斜杠在服务器解析的时候，表示地址为：http://ip:port/工程路径 &lt;br/> /hello 表示地址为：http://ip:port/工程径/hello &lt;br/>  --></span>
+    	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-mapping</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>web-app</span><span class="token punctuation">></span></span></code></pre>
+
+<br>
+
+
+
+<h3 id="url-地址到-Servlet-程序的访问"><a href="#url-地址到-Servlet-程序的访问" class="headerlink" title="url 地址到 Servlet 程序的访问"></a>url 地址到 Servlet 程序的访问</h3><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812409.png" alt="image-20211001164913878" loading="lazy"><em>url 地址到 Servlet 程序的访问</em></p>
+<br>
+
+<h3 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h3><ol>
+<li><p>执行<code>Servlet</code>的构造器方法</p>
+</li>
+<li><p>执行<code>init</code>初始化方法</p>
+</li>
+<li><p>执行<code>service</code>方法</p>
+</li>
+<li><p>执行<code>destroy</code>方法</p>
+</li>
+</ol>
+<div class="success">
+    <blockquote>
+        第一、二步，是在第一次访问的时候创建 Servlet 程序会调用。<br>
+        第三步，每次访问都会调用。<br>
+        第四步，在 web 工程停止的时候调用。<br>
+    </blockquote>
+</div>
+
+
+<br>
+
+<h3 id="GET-和-POST-请求的分发处理"><a href="#GET-和-POST-请求的分发处理" class="headerlink" title="GET 和 POST 请求的分发处理"></a>GET 和 POST 请求的分发处理</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloServlet</span> <span class="token keyword">implements</span> <span class="token class-name">Servlet</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/**
+    * service 方法是专门用来处理请求和响应的
+    * @param servletRequest
+    * @param servletResponse
+    * @throws ServletException
+    * @throws IOException
+    */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">service</span><span class="token punctuation">(</span><span class="token class-name">ServletRequest</span> servletRequest<span class="token punctuation">,</span> <span class="token class-name">ServletResponse</span> servletResponse<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"3 service === Hello Servlet 被访问了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 类型转换（因为它有 getMethod()方法）</span>
+        <span class="token class-name">HttpServletRequest</span> httpServletRequest <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span><span class="token punctuation">)</span> servletRequest<span class="token punctuation">;</span>
+        <span class="token comment">// 获取请求的方式</span>
+        <span class="token class-name">String</span> method <span class="token operator">=</span> httpServletRequest<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>method<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"POST"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>method<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">/**
+    * 做 get 请求的操作
+    */</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"get 请求"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"get 请求"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">/**
+    * 做 post 请求的操作
+    */</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"post 请求"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"post 请求"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<br>
+
+<h3 id="通过继承HttpServlet实现Servlet程序"><a href="#通过继承HttpServlet实现Servlet程序" class="headerlink" title="通过继承HttpServlet实现Servlet程序"></a>通过继承HttpServlet实现Servlet程序</h3><p>一般实际项目开发中，都是使用继承<code>HttpServlet</code>类的方式去实现<code>Servlet</code>程序。</p>
+<ol>
+<li>编写一个类去继承<code>HttpServlet</code>类</li>
+<li>根据业务需要重写<code>doGet()</code>或<code>doPost()</code>方法</li>
+<li>到<code>web.xml</code>中配置<code>Servlet</code>程序的访问地址</li>
+</ol>
+<blockquote>
+<p><code>Servlet</code>类的代码：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloServlet2</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/**
+    * doGet()在 get 请求的时候调用
+    * @param req
+    * @param resp
+    * @throws ServletException
+    * @throws IOException
+    */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+    	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"HelloServlet2 的 doGet 方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">/**
+    * doPost（）在 post 请求的时候调用
+    * @param req
+    * @param resp
+    * @throws ServletException
+    * @throws IOException
+    */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span>
+    <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+    	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"HelloServlet2 的 doPost 方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<blockquote>
+<p><code>web.xml</code> 中的配置</p>
+</blockquote>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>HelloServlet2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-class</span><span class="token punctuation">></span></span>com.atguigu.servlet.HelloServlet2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-class</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-mapping</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>HelloServlet2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/hello2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-mapping</span><span class="token punctuation">></span></span></code></pre>
+
+<br>
+
+<h3 id="使用-IDEA-创建-Servlet-程序"><a href="#使用-IDEA-创建-Servlet-程序" class="headerlink" title="使用 IDEA 创建 Servlet 程序"></a>使用 IDEA 创建 Servlet 程序</h3><div class="danger">
+    <blockquote>
+        我跟你讲，新版的idea好像是没有，至少我没有。<br>
+        请参考该教程先将该选项弄出来。<br>
+        <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45518468/article/details/116902257)">IDEA创建Servlet最新方法 Idea版本2021.1及以下（超详细）</a>
+    </blockquote>
+</div> 
+
+<blockquote>
+<p>菜单：new-&gt;Servlet程序</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812012.png" alt="image-20211001170340019" loading="lazy"></p>
+<blockquote>
+<p>配置 Servlet 的信息：</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812099.png" alt="image-20211001170400736" loading="lazy"></p>
+<br>
+
+<h3 id="Servlet类的继承体系"><a href="#Servlet类的继承体系" class="headerlink" title="Servlet类的继承体系"></a>Servlet类的继承体系</h3><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812700.png" alt="image-20211001170430208" loading="lazy"><em>Servlet类的继承体系</em></p>
+<br>
+
+<br>
+
+<h2 id="ServletConfig类"><a href="#ServletConfig类" class="headerlink" title="ServletConfig类"></a>ServletConfig类</h2><ul>
+<li><code>ServletConfig</code> 类从类名上来看，就知道是 <code>Servlet</code> 程序的配置信息类。</li>
+<li><code>Servlet</code> 程序和 <code>ServletConfig</code> 对象都是由 <code>Tomcat</code> 负责创建，我们负责使用。 </li>
+<li><code>Servlet</code> 程序默认是第一次访问的时候创建，<code>ServletConfig</code> 是每个 <code>Servlet</code> 程序创建时，就创建一个对应的 <code>ServletConfig</code> 对象。</li>
+</ul>
+<br>
+
+<h3 id="ServletConfig类的三大作用"><a href="#ServletConfig类的三大作用" class="headerlink" title="ServletConfig类的三大作用"></a>ServletConfig类的三大作用</h3><ol>
+<li>可以获取<code>Servlet</code>程序的别名，<code>servlet-name</code>的值</li>
+<li>获取初始化参数 <code>init-param</code></li>
+<li>获取<code>ServletContext</code>对象</li>
+</ol>
+<blockquote>
+<p><code>web.xml</code>中的配置</p>
+</blockquote>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- servlet 标签给 Tomcat 配置 Servlet 程序 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--servlet-name 标签 Servlet 程序起一个别名（一般是类名） --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>HelloServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--servlet-class 是 Servlet 程序的全类名--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-class</span><span class="token punctuation">></span></span>com.atguigu.servlet.HelloServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-class</span><span class="token punctuation">></span></span>
+    
+    <span class="token comment">&lt;!--init-param 是初始化参数--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>init-param</span><span class="token punctuation">></span></span>
+        <span class="token comment">&lt;!--是参数名--></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>username<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+        <span class="token comment">&lt;!--是参数值--></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>root<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>init-param</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>init-param</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>url<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>www.baidu.com<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>init-param</span><span class="token punctuation">></span></span>
+    
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!--servlet-mapping 标签给 servlet 程序配置访问地址--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-mapping</span><span class="token punctuation">></span></span>
+<span class="token comment">&lt;!--servlet-name 标签的作用是告诉服务器，我当前配置的地址给哪个 Servlet 程序使用--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>HelloServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--
+    url-pattern 标签配置访问地址 &lt;br/>
+    / 斜杠在服务器解析的时候，表示地址为：http://ip:port/工程路径 &lt;br/>
+    /hello 表示地址为：http://ip:port/工程路径/hello &lt;br/>
+    --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-mapping</span><span class="token punctuation">></span></span></code></pre>
+
+<blockquote>
+<p><code>Servlet</code>中的代码（仅<code>init</code>方法）：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token class-name">ServletConfig</span> servletConfig<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"2 init 初始化方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 1、可以获取 Servlet 程序的别名 servlet-name 的值</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"HelloServlet 程序的别名是:"</span> <span class="token operator">+</span> servletConfig<span class="token punctuation">.</span><span class="token function">getServletName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 2、获取初始化参数 init-param</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"初始化参数 username 的值是;"</span> <span class="token operator">+</span> servletConfig<span class="token punctuation">.</span><span class="token function">getInitParameter</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"初始化参数 url 的值是;"</span> <span class="token operator">+</span> servletConfig<span class="token punctuation">.</span><span class="token function">getInitParameter</span><span class="token punctuation">(</span><span class="token string">"url"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 3、获取 ServletContext 对象</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>servletConfig<span class="token punctuation">.</span><span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812268.png" alt="image-20211002221541199" loading="lazy"><em>运行结果</em></p>
+<div class="danger">
+    <blockquote>
+        <b>注意：</b>
+    </blockquote>
+</div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813931.png" alt="image-20211001171513099" loading="lazy"></p>
+<br>
+
+<br>
+
+<h2 id="ServletContext类"><a href="#ServletContext类" class="headerlink" title="ServletContext类"></a>ServletContext类</h2><h3 id="什么是-ServletContext？"><a href="#什么是-ServletContext？" class="headerlink" title="什么是 ServletContext？"></a>什么是 ServletContext？</h3><ol>
+<li>ServletContext 是一个接口，它表示 Servlet 上下文对象 </li>
+<li>一个 web 工程，只有一个 ServletContext 对象实例。 </li>
+<li>ServletContext 对象是一个<strong>域对象</strong>。 </li>
+<li>ServletContext 是在 web 工程部署启动的时候创建。在 web 工程停止的时候销毁。</li>
+</ol>
+<blockquote>
+<p>什么是域对象？</p>
+<p>域对象，是可以像 Map 一样存取数据的对象，叫域对象。 </p>
+<p>这里的域指的是存取数据的操作范围，整个 web 工程。</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">存数据</th>
+<th align="center">取数据</th>
+<th align="center">删除数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Map</td>
+<td align="center"><code>put()</code></td>
+<td align="center"><code>get()</code></td>
+<td align="center"><code>remove()</code></td>
+</tr>
+<tr>
+<td align="center">域对象</td>
+<td align="center"><code>setAttrbute()</code></td>
+<td align="center"><code>getAttrbute()</code></td>
+<td align="center"><code>removeAttrbute()</code></td>
+</tr>
+</tbody></table>
+</blockquote>
+<br>
+
+<h3 id="ServletContext-类的四个作用"><a href="#ServletContext-类的四个作用" class="headerlink" title="ServletContext 类的四个作用"></a>ServletContext 类的四个作用</h3><ol>
+<li>获取 web.xml 中配置的上下文参数 context-param </li>
+<li>获取当前的工程路径，格式: &#x2F;工程路径 </li>
+<li>获取工程部署后在服务器硬盘上的绝对路径 </li>
+<li>像 Map 一样存取数据</li>
+</ol>
+<blockquote>
+<p><code>ServletContext</code> 演示代码：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span>
+<span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1、获取 web.xml 中配置的上下文参数 context-param</span>
+    <span class="token class-name">ServletContext</span> context <span class="token operator">=</span> <span class="token function">getServletConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> username <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getInitParameter</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"context-param 参数 username 的值是:"</span> <span class="token operator">+</span> username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"context-param 参数 password 的值是:"</span> <span class="token operator">+</span> context<span class="token punctuation">.</span><span class="token function">getInitParameter</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 2、获取当前的工程路径，格式: /工程路径</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span> <span class="token string">"当前工程路径:"</span> <span class="token operator">+</span> context<span class="token punctuation">.</span><span class="token function">getContextPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 3、获取工程部署后在服务器硬盘上的绝对路径</span>
+    <span class="token comment">/**
+    * / 斜杠被服务器解析地址为:http://ip:port/工程名/ 映射到 IDEA 代码的 web 目录&lt;br/>
+    */</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"工程部署的路径是:"</span> <span class="token operator">+</span> context<span class="token punctuation">.</span><span class="token function">getRealPath</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"工程下 css 目录的绝对路径是:"</span> <span class="token operator">+</span> context<span class="token punctuation">.</span><span class="token function">getRealPath</span><span class="token punctuation">(</span><span class="token string">"/css"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"工程下 imgs 目录 1.jpg 的绝对路径是:"</span> <span class="token operator">+</span> context<span class="token punctuation">.</span><span class="token function">getRealPath</span><span class="token punctuation">(</span><span class="token string">"/imgs/1.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<blockquote>
+<p><code>web.xml</code> 中的配置：</p>
+</blockquote>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--context-param 是上下文参数(它属于整个 web 工程)--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>context-param</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>username<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>context<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context-param</span><span class="token punctuation">></span></span>
+<span class="token comment">&lt;!--context-param 是上下文参数(它属于整个 web 工程)--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>context-param</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>password<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>root<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context-param</span><span class="token punctuation">></span></span></code></pre>
+
+<br>
+
+<blockquote>
+<p>ServletContext 像 Map 一样存取数据</p>
+<p>ContextServlet1 代码：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ContextServlet1</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 获取ServletContext对象</span>
+        <span class="token class-name">ServletContext</span> context <span class="token operator">=</span> <span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 没有设置前怎么获取都是null</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Context1 中获取域数据key1的值是："</span><span class="token operator">+</span>context<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"key1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        context<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"key1"</span><span class="token punctuation">,</span> <span class="token string">"value1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Context1 中获取域数据key1的值是："</span><span class="token operator">+</span>context<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"key1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812184.png" alt="image-20211002221253765" loading="lazy"><em>运行结果</em></p>
+<blockquote>
+<p>ContextServlet2 代码：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span>
+<span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">ServletContext</span> context <span class="token operator">=</span> <span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Context2 中获取域数据 key1 的值是:"</span><span class="token operator">+</span> context<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"key1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812603.png" alt="image-20211003162424323" loading="lazy"><em>运行结果</em></p>
+<br>
+
+<br>
+
+<h2 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h2><h3 id="什么是-HTTP-协议"><a href="#什么是-HTTP-协议" class="headerlink" title="什么是 HTTP 协议"></a>什么是 HTTP 协议</h3><p>什么是协议?</p>
+<p>协议是指双方，或多方，相互约定好，大家都需要遵守的规则，叫协议</p>
+<p>所谓 HTTP 协议，就是指，客户端和服务器之间通信时，发送的数据，需要遵守的规则，叫 HTTP 协议</p>
+<p>HTTP 协议中的数据又叫报文。</p>
+<br>
+
+<h3 id="请求的-HTTP-协议格式"><a href="#请求的-HTTP-协议格式" class="headerlink" title="请求的 HTTP 协议格式"></a>请求的 HTTP 协议格式</h3><blockquote>
+<p>客户端给服务器发送数据叫请求。</p>
+<p>服务器给客户端回传数据叫响应。</p>
+</blockquote>
+<h4 id="GET-请求"><a href="#GET-请求" class="headerlink" title="GET 请求"></a>GET 请求</h4><ol>
+<li>请求行<ol>
+<li>请求的方式		<code>GET</code></li>
+<li>请求的资源路径		<code>[+?+请求参数]</code></li>
+<li>请求的协议的版本号		<code>HTTP/1.1</code></li>
+</ol>
+</li>
+<li>请求头<ol>
+<li><code>key:value</code> 组成 不同的键值对，表示不同的含义。</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812954.png" alt="image-20211002222252805" loading="lazy"><em>一次完整的 GET 请求</em></p>
+<br>
+
+<h4 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h4><ol>
+<li>请求行<ol>
+<li>请求的方式		<code>POST</code></li>
+<li>请求的资源路径		<code>[+?+请求参数]</code></li>
+<li>请求的协议的版本号		<code>HTTP/1.1</code></li>
+</ol>
+</li>
+<li>请求头<ol>
+<li><code>key:value</code>		不同的请求头，有不同的含义</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241812427.png" alt="image-20211002222624619" loading="lazy"><em>一次完整的 POST 请求</em></p>
+<br>
+
+<h4 id="常用的请求头的说明"><a href="#常用的请求头的说明" class="headerlink" title="常用的请求头的说明"></a>常用的请求头的说明</h4><ol>
+<li><code>Accept</code>：表示客户端可以接收的数据类型</li>
+<li><code>Accpet-Languege</code>：表示客户端可以接收的语言类型</li>
+<li><code>User-Agent</code>：表示客户端浏览器的信息</li>
+<li><code>Host</code>：表示请求时的服务器 ip 和端口号</li>
+</ol>
+<br>
+
+<h4 id="哪些是-GET-请求，哪些是-POST"><a href="#哪些是-GET-请求，哪些是-POST" class="headerlink" title="哪些是 GET 请求，哪些是 POST"></a>哪些是 GET 请求，哪些是 POST</h4><ol>
+<li><p><code>GET</code> 请求有哪些</p>
+<ol>
+<li><code>form</code> 标签 <code>method=get</code></li>
+<li><code>a</code> 标签</li>
+<li><code>link</code> 标签引入 <code>css</code></li>
+<li><code>Script</code> 标签引入 <code>js</code> 文件</li>
+<li><code>img</code> 标签引入图片</li>
+<li><code>iframe</code> 引入 html 页面</li>
+<li>在浏览器地址栏中输入地址后敲回车</li>
+</ol>
+</li>
+<li><p><code>POST</code>请求有哪些</p>
+<ol>
+<li><code>form</code> 标签 <code>method=post</code></li>
+</ol>
+</li>
+</ol>
+<br>
+
+<h3 id="响应的-HTTP-协议格式"><a href="#响应的-HTTP-协议格式" class="headerlink" title="响应的 HTTP 协议格式"></a>响应的 HTTP 协议格式</h3><ol>
+<li>响应行<ol>
+<li>响应的协议和版本号</li>
+<li>响应状态码</li>
+<li>相应状态描述符</li>
+</ol>
+</li>
+<li>响应头<ol>
+<li><code>key:value</code>	不同的响应头，有其不同的含义</li>
+</ol>
+</li>
+<li>响应体 —&gt;&gt; 就是回传给客户端的数据</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813024.png" alt="image-20211002223326908" loading="lazy"><em>响应</em></p>
+<br>
+
+<h3 id="常用的状态码"><a href="#常用的状态码" class="headerlink" title="常用的状态码"></a>常用的状态码</h3><p><code>[200]</code> 表示请求成功</p>
+<p><code>[302]</code> 表示请求重定向</p>
+<p><code>[404]</code> 表示请求服务器已经收到了，但是你要的数据不存在（请求地址错误） </p>
+<p><code>[500]</code> 表示服务器已经收到请求，但是服务器内部错误（代码错误）</p>
+<br>
+
+
+
+<h3 id="MIME-类型说明"><a href="#MIME-类型说明" class="headerlink" title="MIME 类型说明"></a>MIME 类型说明</h3><p>MIME 是 HTTP 协议中数据类型。</p>
+<p>MIME 的英文全称是”Multipurpose Internet Mail Extensions” 多功能 Internet 邮件扩充服务。</p>
+<p>MIME 类型的格式是“大类型&#x2F;小 类型”，并与某一种文件的扩展名相对应。</p>
+<p>常见的MIME类型：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>MIME类型</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>超文本标记语言文本</td>
+<td>.html , .htm</td>
+<td>text&#x2F;html</td>
+</tr>
+<tr>
+<td>普通文本</td>
+<td>.txt</td>
+<td>text&#x2F;plain</td>
+</tr>
+<tr>
+<td>RTF 文本</td>
+<td>.rtf</td>
+<td>application&#x2F;rtf</td>
+</tr>
+<tr>
+<td>GIF 图形</td>
+<td>.gif</td>
+<td>image&#x2F;gif</td>
+</tr>
+<tr>
+<td>JPEG 图形</td>
+<td>.jpeg，.jpg</td>
+<td>image&#x2F;jpeg au</td>
+</tr>
+<tr>
+<td>声音文件</td>
+<td>.au</td>
+<td>audio&#x2F;basic</td>
+</tr>
+<tr>
+<td>MIDI 音乐文件</td>
+<td>mid,.midi</td>
+<td>audio&#x2F;midi,audio&#x2F;x-midi RealAudio</td>
+</tr>
+<tr>
+<td>音乐文件</td>
+<td>.ra，.ram</td>
+<td>audio&#x2F;x-pn-realaudio</td>
+</tr>
+<tr>
+<td>MPEG 文件</td>
+<td>.mpg，.mpeg</td>
+<td>video&#x2F;mpeg</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>谷歌浏览器查看 HTTP 协议的方式</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813977.png" alt="image-20211002223702379" loading="lazy"><em>谷歌浏览器</em></p>
+<br>
+
+<h2 id="HttpServletRequest-类"><a href="#HttpServletRequest-类" class="headerlink" title="HttpServletRequest 类"></a>HttpServletRequest 类</h2><div class="success">
+    <blockquote>
+        每次只要有请求进入 Tomcat 服务器，Tomcat 服务器就会把请求过来的 HTTP 协议信息解析好封装到 Request 对象中。 然后传递到 `service` 方法（`doGet` 和 `doPost`）中给我们使用。我们可以通过 HttpServletRequest 对象，获取到所有请求的 信息。
+    </blockquote>
+</div>
+
+<br>
+
+<h3 id="HttpServletRequest-类的常用方法"><a href="#HttpServletRequest-类的常用方法" class="headerlink" title="HttpServletRequest 类的常用方法"></a>HttpServletRequest 类的常用方法</h3><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>getRequestURI()</td>
+<td>获取请求的资源路径</td>
+</tr>
+<tr>
+<td>getRequestURL()</td>
+<td>获取请求的统一资源定位符（绝对路径）</td>
+</tr>
+<tr>
+<td>getRemoteHost()</td>
+<td>获取客户端的 ip 地址</td>
+</tr>
+<tr>
+<td>getHeader()</td>
+<td>获取请求头</td>
+</tr>
+<tr>
+<td>getParameter()</td>
+<td>获取请求的参数</td>
+</tr>
+<tr>
+<td>getParameterValues()</td>
+<td>获取请求的参数（多个值的时候使用）</td>
+</tr>
+<tr>
+<td>getMethod()</td>
+<td>获取请求的方式 GET 或 POST viii. setAttribute(key, value); 设置域数据</td>
+</tr>
+<tr>
+<td>getAttribute(key)</td>
+<td>获取域数据</td>
+</tr>
+<tr>
+<td>getRequestDispatcher()</td>
+<td>获取请求转发对象</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>常用API示例代码</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RequestAPIServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span>
+    <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// i.getRequestURI() 获取请求的资源路径</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"URI => "</span> <span class="token operator">+</span> req<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// ii.getRequestURL() 获取请求的统一资源定位符（绝对路径）</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"URL => "</span> <span class="token operator">+</span> req<span class="token punctuation">.</span><span class="token function">getRequestURL</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// iii.getRemoteHost() 获取客户端的 ip 地址</span>
+        <span class="token comment">/**
+        * 在 IDEA 中，使用 localhost 访问时，得到的客户端 ip 地址是 ===>>> 127.0.0.1&lt;br/>
+        * 在 IDEA 中，使用 127.0.0.1 访问时，得到的客户端 ip 地址是 ===>>> 127.0.0.1&lt;br/>
+        * 在 IDEA 中，使用 真实 ip 访问时，得到的客户端 ip 地址是 ===>>> 真实的客户端 ip 地址&lt;br/>
+        */</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"客户端 ip 地址 => "</span> <span class="token operator">+</span> req<span class="token punctuation">.</span><span class="token function">getRemoteHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// iv.getHeader() 获取请求头</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"请求头 User-Agent ==>> "</span> <span class="token operator">+</span> req<span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token string">"User-Agent"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// vii.getMethod() 获取请求的方式 GET 或 POST</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span> <span class="token string">"请求的方式 ==>> "</span> <span class="token operator">+</span> req<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<br>
+
+<h3 id="如何获取请求参数"><a href="#如何获取请求参数" class="headerlink" title="如何获取请求参数"></a>如何获取请求参数</h3><blockquote>
+<p>表单：</p>
+</blockquote>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://localhost:8080/07_servlet/parameterServlet<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>get<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        用户名：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+        密码：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+        兴趣爱好：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hobby<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>cpp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>C++
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hobby<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>java<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Java
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hobby<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
+
+<blockquote>
+<p>Java：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ParameterServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span>
+    <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 获取请求参数</span>
+        <span class="token class-name">String</span> username <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> password <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> hobby <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameterValues</span><span class="token punctuation">(</span><span class="token string">"hobby"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"用户名："</span> <span class="token operator">+</span> username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"密码："</span> <span class="token operator">+</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"兴趣爱好："</span> <span class="token operator">+</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>hobby<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<br>
+
+<h3 id="doGet-请求的中文乱码解决："><a href="#doGet-请求的中文乱码解决：" class="headerlink" title="doGet 请求的中文乱码解决："></a>doGet 请求的中文乱码解决：</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 获取请求参数</span>
+<span class="token class-name">String</span> username <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//1 先以 iso8859-1 进行编码</span>
+<span class="token comment">//2 再以 utf-8 进行解码</span>
+username <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>username<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token string">"iso-8859-1"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<br>
+
+<h3 id="doPOST-请求的中文乱码解决："><a href="#doPOST-请求的中文乱码解决：" class="headerlink" title="doPOST 请求的中文乱码解决："></a>doPOST 请求的中文乱码解决：</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span>
+<span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 设置请求体的字符集为 UTF-8，从而解决 post 请求的中文乱码问题</span>
+    req<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-------------doPost------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 获取请求参数</span>
+    <span class="token class-name">String</span> username <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> password <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> hobby <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameterValues</span><span class="token punctuation">(</span><span class="token string">"hobby"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"用户名："</span> <span class="token operator">+</span> username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"密码："</span> <span class="token operator">+</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"兴趣爱好："</span> <span class="token operator">+</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>hobby<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<br>
+
+<h3 id="请求的转发"><a href="#请求的转发" class="headerlink" title="请求的转发"></a>请求的转发</h3><div class="success">
+    <blockquote>
+        请求转发是指，服务器收到请求后，从一次资源跳转到另一个资源的操作叫请求转发。
+    </blockquote>
+</div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813553.png" alt="image-20211002225808422" loading="lazy"><em>请求转发</em></p>
+<blockquote>
+<p>Servlet1 代码：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Servlet1</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span>
+    <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 获取请求的参数（办事的材料）查看</span>
+        <span class="token class-name">String</span> username <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"在 Servlet1（柜台 1）中查看参数（材料）："</span> <span class="token operator">+</span> username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 给材料 盖一个章，并传递到 Servlet2（柜台 2）去查看</span>
+        req<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"key1"</span><span class="token punctuation">,</span><span class="token string">"柜台 1 的章"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 问路：Servlet2（柜台 2）怎么走</span>
+        <span class="token comment">/**
+        * 请求转发必须要以斜杠打头，/ 斜杠表示地址为：http://ip:port/工程名/ , 映射到 IDEA 代码的 web 目录
+        &lt;br/>
+        *
+        */</span>
+        <span class="token class-name">RequestDispatcher</span> requestDispatcher <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getRequestDispatcher</span><span class="token punctuation">(</span><span class="token string">"/servlet2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// RequestDispatcher requestDispatcher = req.getRequestDispatcher("http://www.baidu.com");</span>
+        <span class="token comment">// 走向 Sevlet2（柜台 2）</span>
+        requestDispatcher<span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span>resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<blockquote>
+<p>Servlet2 代码：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Servlet2</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span>
+    <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 获取请求的参数（办事的材料）查看</span>
+        <span class="token class-name">String</span> username <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"在 Servlet2（柜台 2）中查看参数（材料）："</span> <span class="token operator">+</span> username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 查看 柜台 1 是否有盖章</span>
+        <span class="token class-name">Object</span> key1 <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"key1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"柜台 1 是否有章："</span> <span class="token operator">+</span> key1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 处理自己的业务</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Servlet2 处理自己的业务 "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<br>
+
+<h3 id="base-标签的使用"><a href="#base-标签的使用" class="headerlink" title="base 标签的使用"></a>base 标签的使用</h3><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813198.png" alt="image-20211002225947853" loading="lazy"><em>base标签</em></p>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>zh_CN<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--base 标签设置页面相对路径工作时参照的地址 href 属性就是参数的地址值--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>base</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://localhost:8080/07_servlet/a/b/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    这是 a 下的 b 下的 c.html 页面<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../../index.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>跳回首页<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+
+<br>
+
+<h3 id="Web-中的相对路径和绝对路径"><a href="#Web-中的相对路径和绝对路径" class="headerlink" title="Web 中的相对路径和绝对路径"></a>Web 中的相对路径和绝对路径</h3><p>在 javaWeb 中，路径分为相对路径和绝对路径两种：</p>
+<ol>
+<li>相对路径<ol>
+<li><code>[.]</code>  &amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;     &amp;nbsp;&amp;nbsp;&amp;nbsp;表示当前目录</li>
+<li><code>[..]</code>&amp;nbsp;            &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;表示上一级目录</li>
+<li><code>[资源名]</code>&amp;nbsp;&amp;nbsp;&amp;nbsp;表示当前目录&#x2F;资源名</li>
+</ol>
+</li>
+<li>绝对路径<ol>
+<li><code>http://ip:port/工程路径/资源路径</code></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>在实际开发中，路径都使用绝对路径，而不简单的使用相对路径。</p>
+<ol>
+<li>绝对路径</li>
+<li>base+相对</li>
+</ol>
+</blockquote>
+<br>
+
+<h3 id="web-中-x2F-斜杠的不同意义"><a href="#web-中-x2F-斜杠的不同意义" class="headerlink" title="web 中 &#x2F; 斜杠的不同意义"></a>web 中 &#x2F; 斜杠的不同意义</h3><p>在 web 中 <code>/</code> 斜杠 是一种绝对路径</p>
+<ol>
+<li><p><code>/</code> 斜杠 如果被浏览器解析，得到的地址是：<code>http://ip:port/</code></p>
+<ol>
+<li><code>&lt;a href=&quot;/&quot;&gt;斜杠&lt;/a&gt;</code></li>
+</ol>
+</li>
+<li><p><code>/</code> 斜杠，如果被服务器解析，得到的地址是：<code>http://ip:port/工程路径</code></p>
+<ol>
+<li><code>/servlet1</code></li>
+<li><code>servletContext.getRealPath(“/”);</code></li>
+<li><code>request.getRequestDispatcher(“/”);</code></li>
+</ol>
+</li>
+</ol>
+<p><strong>特殊情况： response.sendRediect(“&#x2F;”); 把斜杠发送给浏览器解析。得到 <code>http://ip:port/</code></strong></p>
+<br>
+
+<h2 id="HttpServletResponse-类"><a href="#HttpServletResponse-类" class="headerlink" title="HttpServletResponse 类"></a>HttpServletResponse 类</h2><div class="success">
+    <blockquote>
+        HttpServletResponse 类和 HttpServletRequest 类一样。每次请求进来，Tomcat 服务器都会创建一个 Response 对象传 递给 Servlet 程序去使用。<br>
+        HttpServletRequest 表示请求过来的信息，<br>
+        HttpServletResponse 表示所有响应的信息，<br>
+        我们如果需要设置返回给客户端的信息，都可以通过 HttpServletResponse 对象来进行设置
+    </blockquote>
+</div>
+
+<br>
+
+<h3 id="两个输出流的说明"><a href="#两个输出流的说明" class="headerlink" title="两个输出流的说明"></a>两个输出流的说明</h3><table>
+<thead>
+<tr>
+<th>字节流</th>
+<th>getOutputStream();</th>
+<th>常用于下载（传递二进制数据）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>字符流</td>
+<td>getWriter();</td>
+<td>常用于回传字符串（常用）</td>
+</tr>
+</tbody></table>
+<p>两个流同时只能使用一个。</p>
+<p>使用了字节流，就不能再使用字符流，反之亦然，否则就会报错。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813787.png" alt="image-20211002232024842" loading="lazy"><em>同时使用的报错信息</em></p>
+<br>
+
+<h3 id="如何往客户端回传数据"><a href="#如何往客户端回传数据" class="headerlink" title="如何往客户端回传数据"></a>如何往客户端回传数据</h3><blockquote>
+<p>要求：往客户端回传字符串数据</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ResponseIOServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span>
+    <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 要求 ： 往客户端回传 字符串 数据。</span>
+        <span class="token class-name">PrintWriter</span> writer <span class="token operator">=</span> resp<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        writer<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"response's content!!!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<br>
+
+<h3 id="响应的乱码解决"><a href="#响应的乱码解决" class="headerlink" title="响应的乱码解决"></a>响应的乱码解决</h3><blockquote>
+<p>解决响应中文乱码方案一（不推荐使用）：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 设置服务器字符集为 UTF-8</span>
+resp<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 通过响应头，设置浏览器也使用 UTF-8 字符集</span>
+resp<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Type"</span><span class="token punctuation">,</span> <span class="token string">"text/html; charset=UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<blockquote>
+<p>解决响应中文乱码方案二（推荐）：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 它会同时设置服务器和客户端都使用 UTF-8 字符集，还设置了响应头</span>
+<span class="token comment">// 此方法一定要在获取流对象之前调用才有效</span>
+resp<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">"text/html; charset=UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<br>
+
+<h3 id="请求重定向"><a href="#请求重定向" class="headerlink" title="请求重定向"></a>请求重定向</h3><div class="success">
+    <blockquote>
+        请求重定向，是指客户端给服务器发请求，然后服务器告诉客户端说。我给你一些地址。你去新地址访问。叫请求重定向（因为之前的地址可能已经被废弃）。
+    </blockquote>
+</div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241813235.png" alt="image-20211002232252541" loading="lazy"><em>何为请求重定向</em></p>
+<blockquote>
+<p>请求重定向的第一种方案：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 设置响应状态码 302 ，表示重定向，（已搬迁） </span>
+resp<span class="token punctuation">.</span><span class="token function">setStatus</span><span class="token punctuation">(</span><span class="token number">302</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment">// 设置响应头，说明 新的地址在哪里 </span>
+resp<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Location"</span><span class="token punctuation">,</span> <span class="token string">"http://localhost:8080"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<blockquote>
+<p> 请求重定向的第二种方案（推荐使用）：</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java">resp<span class="token punctuation">.</span><span class="token function">sendRedirect</span><span class="token punctuation">(</span><span class="token string">"http://localhost:8080"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511314.png"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511314.png" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511137.png"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511137.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511629.png"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511629.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>小小千辰</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://qianchenjun.github.io/posts/43aac5ed/" title="Servlet的使用">https://qianchenjun.github.io/posts/43aac5ed/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/78b18e67/" rel="prev" title="JSP"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">JSP</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/acc4324d/" rel="next" title="Tomcat的使用"><span class="post-nav-text">Tomcat的使用</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>如果您有任何关于博客内容的相关讨论，欢迎前往 <a href="http://wpa.qq.com/msgrd?v=3&uin=1741820016&site=qq&menu=yes" target="_blank">QQ</a> 与我交流。</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2022010421号</a></div><div class="copyright"><span>&copy; 2021 – 2023 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://www.qianchen.xyz/albums/" title="一个神秘的地方（小彩蛋）"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></a><span class="author"> 小小千辰</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.1.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.8.11</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2021-08-26T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script></div></body></html>
