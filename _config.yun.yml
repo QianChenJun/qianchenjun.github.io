@@ -384,7 +384,7 @@ engine_search:
 
 # 本地搜索
 local_search:
-  enable: false
+  enable: true
   src: /js/search/local-search.js
 
 algolia_search:
