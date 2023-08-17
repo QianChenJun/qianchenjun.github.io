@@ -1,1 +1,66 @@
-function P(n){let s=["102, 167, 221","62, 131, 225","33, 78, 194"];n=Object.assign({colors:s,numberOfParticules:20,orbitRadius:{min:50,max:100},circleRadius:{min:10,max:20},diffuseRadius:{min:50,max:100},animeDuration:{min:900,max:1500}},n);let u=0,l=0,c=n.colors||s,o=document.querySelector(".fireworks"),t=o.getContext("2d");function m(e){e.width=window.innerWidth,e.height=window.innerHeight,e.style.width=`${window.innerWidth}px`,e.style.height=`${window.innerHeight}px`}function h(e){u=e.clientX||(e.touches[0]?e.touches[0].clientX:e.changedTouches[0].clientX),l=e.clientY||(e.touches[0]?e.touches[0].clientY:e.changedTouches[0].clientY)}function f(e){let a=window.anime.random(0,360)*Math.PI/180,i=window.anime.random(n.diffuseRadius.min,n.diffuseRadius.max),d=[-1,1][window.anime.random(0,1)]*i;return{x:e.x+d*Math.cos(a),y:e.y+d*Math.sin(a)}}function x(e,a){let i={x:e,y:a,color:`rgba(${c[window.anime.random(0,c.length-1)]},${window.anime.random(.2,.8)})`,radius:window.anime.random(n.circleRadius.min,n.circleRadius.max),endPos:null,draw(){}};return i.endPos=f(i),i.draw=function(){t.beginPath(),t.arc(i.x,i.y,i.radius,0,2*Math.PI,!0),t.fillStyle=i.color,t.fill()},i}function b(e,a){let i={x:e,y:a,color:"#000",radius:.1,alpha:.5,lineWidth:6,draw(){}};return i.draw=function(){t.globalAlpha=i.alpha,t.beginPath(),t.arc(i.x,i.y,i.radius,0,2*Math.PI,!0),t.lineWidth=i.lineWidth,t.strokeStyle=i.color,t.stroke(),t.globalAlpha=1},i}function w(e){for(let a=0;a<e.animatables.length;a++)e.animatables[a].target.draw()}function g(e,a){let i=b(e,a),d=[];for(let r=0;r<n.numberOfParticules;r++)d.push(x(e,a));window.anime.timeline().add({targets:d,x(r){return r.endPos.x},y(r){return r.endPos.y},radius:.1,duration:window.anime.random(n.animeDuration.min,n.animeDuration.max),easing:"easeOutExpo",update:w}).add({targets:i,radius:window.anime.random(n.orbitRadius.min,n.orbitRadius.max),lineWidth:0,alpha:{value:0,easing:"linear",duration:window.anime.random(600,800)},duration:window.anime.random(1200,1800),easing:"easeOutExpo",update:w},0)}let p=window.anime({duration:1/0,update:()=>{t.clearRect(0,0,o.width,o.height)}});document.addEventListener("mousedown",e=>{p.play(),h(e),g(u,l)},!1),m(o),window.addEventListener("resize",()=>{m(o)},!1)}document.addEventListener("DOMContentLoaded",()=>{let n={};window.CONFIG.fireworks.colors&&(n.colors=window.CONFIG.fireworks.colors),P(n)});
+(function(window,document,undefined){
+var hearts = [];
+window.requestAnimationFrame = (function(){
+return window.requestAnimationFrame ||
+window.webkitRequestAnimationFrame ||
+window.mozRequestAnimationFrame ||
+window.oRequestAnimationFrame ||
+window.msRequestAnimationFrame ||
+function (callback){
+setTimeout(callback,1000/60);
+}
+})();
+init();
+function init(){
+css(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+attachEvent();
+gameloop();
+}
+function gameloop(){
+for(var i=0;i<hearts.length;i++){
+if(hearts[i].alpha <=0){
+document.body.removeChild(hearts[i].el);
+hearts.splice(i,1);
+continue;
+}
+hearts[i].y--;
+hearts[i].scale += 0.004;
+hearts[i].alpha -= 0.013;
+hearts[i].el.style.cssText = "left:"+hearts[i].x+"px;top:"+hearts[i].y+"px;opacity:"+hearts[i].alpha+";transform:scale("+hearts[i].scale+","+hearts[i].scale+") rotate(45deg);background:"+hearts[i].color;
+}
+requestAnimationFrame(gameloop);
+}
+function attachEvent(){
+var old = typeof window.onclick==="function" && window.onclick;
+window.onclick = function(event){
+old && old();
+createHeart(event);
+}
+}
+function createHeart(event){
+var d = document.createElement("div");
+d.className = "heart";
+hearts.push({
+el : d,
+x : event.clientX - 5,
+y : event.clientY - 5,
+scale : 1,
+alpha : 1,
+color : randomColor()
+});
+document.body.appendChild(d);
+}
+function css(css){
+var style = document.createElement("style");
+style.type="text/css";
+try{
+style.appendChild(document.createTextNode(css));
+}catch(ex){
+style.styleSheet.cssText = css;
+}
+document.getElementsByTagName('head')[0].appendChild(style);
+}
+function randomColor(){
+return "rgb("+(~~(Math.random()*255))+","+(~~(Math.random()*255))+","+(~~(Math.random()*255))+")";
+}
+})(window,document);
