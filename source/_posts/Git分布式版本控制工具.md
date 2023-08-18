@@ -57,13 +57,13 @@ b、分布式版本控制工具
 	有能力高效管理类似 Linux 内核一样的超大规模项目（速度和数据量）
 ```
 
-![image-20211031115201670](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204262021579.png)_Git工作图示_
+![image-20211031115201670](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204262021579.png)_Git工作图示_
 
 <br>
 
 ### Git工作流程图
 
-![image-20211031115301829](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241829906.png)
+![image-20211031115301829](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241829906.png)
 
 命令如下：
 
@@ -97,7 +97,7 @@ b、分布式版本控制工具
 
 部分windows系统不允许用户创建点号开头的文件，可以打开gitBash,执行 `touch ~/.bashrc`
 
-![image-20211031120503148](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241829228.png)
+![image-20211031120503148](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241829228.png)
 
 2. 在`.bashrc`文件中输入如下内容：
 
@@ -110,7 +110,7 @@ alias ll='ls -al'
 
 3. 打开gitBash，执行`source ~/.bashrc`
 
-![image-20211031121213364](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241829857.png)
+![image-20211031121213364](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241829857.png)
 
 <br>
 
@@ -148,7 +148,7 @@ Git工作目录下对于文件的**修改**(增加、删除、更新)会存在�
 
 的命令而发生变化。
 
-![image-20211031121700662](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241829026.png)
+![image-20211031121700662](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241829026.png)
 
 1. `git add`（工作区->暂存区）
 2. `git commit`（暂存区->本地仓库）
@@ -236,7 +236,7 @@ Git工作目录下对于文件的**修改**(增加、删除、更新)会存在�
 
 #### 开发中分支的使用原则与流程
 
-![image-20211031123904655](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241829597.png)
+![image-20211031123904655](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241829597.png)
 
 <br>
 
@@ -246,7 +246,7 @@ Git工作目录下对于文件的**修改**(增加、删除、更新)会存在�
 
 安装好IntelliJ IDEA后，如果Git安装在默认路径下，那么idea会自动找到git的位置，如果更改了Git的安装位置则需要手动配置下Git的路径。选择File→Settings打开设置窗口，找到Version Control下的git选项：
 
-![image-20211031124100453](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241829170.png)
+![image-20211031124100453](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241829170.png)
 
 点击Test按钮,现在执行成功，配置完成
 
@@ -258,11 +258,11 @@ Git工作目录下对于文件的**修改**(增加、删除、更新)会存在�
 
 #### 创建项目远程仓库
 
-![image-20211031124319046](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241829913.png)
+![image-20211031124319046](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241829913.png)
 
 #### 初始化本地仓库
 
-![image-20211031124341663](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241829725.png)
+![image-20211031124341663](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241829725.png)
 
 #### 提交到本地仓库
 
@@ -270,7 +270,7 @@ Git工作目录下对于文件的**修改**(增加、删除、更新)会存在�
 
 #### 推送到远程仓库
 
-![image-20211031124420819](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241830222.png)
+![image-20211031124420819](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241830222.png)
 
 #### 克隆远程仓库到本地
 
@@ -280,21 +280,21 @@ Git工作目录下对于文件的**修改**(增加、删除、更新)会存在�
 
 * 最常规的方式
 
-![image-20211031124513171](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241830231.png)
+![image-20211031124513171](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241830231.png)
 
 * 最强大的方式
 
-![image-20211031124528608](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241830761.png)
+![image-20211031124528608](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241830761.png)
 
 #### 切换分支及其他分支相关操作
 
-![image-20211031124555656](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241830278.png)
+![image-20211031124555656](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241830278.png)
 
 #### 解决冲突
 
 1. 执行merge或pull操作时，可能发生冲突
 
-![image-20211031124646003](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241830167.png)
+![image-20211031124646003](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241830167.png)
 
 2. 冲入解决后加入暂存区
 
@@ -314,11 +314,11 @@ Git工作目录下对于文件的**修改**(增加、删除、更新)会存在�
 
 1. 第一张图的快捷入口可以基本满足开发需求
 
-   ![image-20211031124843609](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241830778.png)
+   ![image-20211031124843609](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241830778.png)
 
 2. 第二张图是更多在IDEA操作git的入口。
 
-   ![image-20211031124902880](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241830478.png)
+   ![image-20211031124902880](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241830478.png)
 
 <br>
 
@@ -334,5 +334,5 @@ Git工作目录下对于文件的**修改**(增加、删除、更新)会存在�
 
 ## 附：IDEA集成GitBash作为Terminal
 
-![image-20211031125235066](https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241830643.png)
+![image-20211031125235066](https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204241830643.png)
 
