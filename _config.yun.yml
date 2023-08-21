@@ -142,16 +142,16 @@ banner:
 # 图片背景
 bg_image:
   enable: true
-  url: /images/light.png # recomend image related to your mode
-  dark: /images/dark.png
+  url: https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/light.png # recomend image related to your mode
+  dark: https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/dark.png
   # blur: 30px
   opacity: 0.9
 
 # 搜索背景
 search:
   modal: false
-  bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
-  dark_bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/mountain-blur-30px.jpg
+  bg_image: https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/stars-timing-0-blur-30px.jpg
+  dark_bg_image: https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/mountain-blur-30px.jpg
   placeholder: 想要搜些什么？
 
 # 随机多边形背景
@@ -178,7 +178,7 @@ cursor:
 # 侧边栏
 sidebar:
   src: /js/sidebar.js
-  bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn@master/img/bg/alpha-stars-timing-1.webp
+  bg_image: https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/alpha-stars-timing-1.webp
   # dark_bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn@master/img/bg/dark-alpha-stars-timing-1.webp
   bg_position: bottom 1rem center
   tagcloud:
@@ -203,7 +203,7 @@ menu:
       icon: icon-price-tag-3-line
   custom:
     title: 参考
-    path: https://www.qianchen.xyz/posts/6b6eb9a8/
+    path: https://blog.qianchen.tk/posts/6b6eb9a8/
     icon: icon-book-2-line
 
 # 友链和女朋友们
@@ -308,7 +308,7 @@ footer:
     name: icon-cloud-line
     animated: true
     color: "#0078E7"
-    url: https://www.qianchen.xyz/albums/
+    url: https://blog.qianchen.tk/albums/
     title: 一个神秘的地方（小彩蛋）
   # 运行时间
   live_time:
