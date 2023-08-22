@@ -82,6 +82,29 @@
   </entry>
   
   <entry>
+    <title>解决使用Clash无法进行One-Drive同步</title>
+    <link href="https://qianchenjun.github.io/posts/833537f6/"/>
+    <id>https://qianchenjun.github.io/posts/833537f6/</id>
+    <published>2023-04-12T02:37:00.000Z</published>
+    <updated>2023-04-12T02:37:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><em><span id="more"></span></em></p><blockquote><p>当我们打开代理软件的时候，一些微软服务会出现无法登陆的情况。</p></blockquote><h2 id="解决方案一（解决）"><a href="#解决方案一（解决）" class="headerlink" title="解决方案一（解决）"></a>解决方案一（解决）</h2><blockquote><p>loopback勾选你的<strong>账户</strong>和<strong>工作或学校账户</strong>后保存即可。</p></blockquote><p><img src="https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202304130902173.png" alt="image-20230413084022082" loading="lazy"></p><blockquote><p>网上有方案说排除全部，经过测试只能实现登陆，没办法同步。</p></blockquote><h2 id="解决方案二"><a href="#解决方案二" class="headerlink" title="解决方案二"></a>解决方案二</h2><blockquote><p><del>但是这种情况，我没办法打开Bypass Domain&#x2F;IPNet，打开编辑一闪而过…</del><br>解决了，是因为选择的默认文本编译器的原因。</p></blockquote><ol><li>打开Clash for Windows界面</li><li>打开<code>Settings</code></li><li>在<code>System Proxy</code>栏目下找到<code>Bypass Domain/IPNet</code>，点击行尾的<code>Edit</code></li><li>加上<code>- &#39;login.microsoftonline.com&#39;</code></li><li>重启Clash与Onedrive</li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;em&gt;</summary>
+    
+    
+    
+    <category term="杂项" scheme="https://qianchenjun.github.io/categories/%E6%9D%82%E9%A1%B9/"/>
+    
+    
+    <category term="Clash" scheme="https://qianchenjun.github.io/tags/Clash/"/>
+    
+    <category term="OneDrive" scheme="https://qianchenjun.github.io/tags/OneDrive/"/>
+    
+  </entry>
+  
+  <entry>
     <title>分布式锁+AOP实现缓存</title>
     <link href="https://qianchenjun.github.io/posts/32677e9a/"/>
     <id>https://qianchenjun.github.io/posts/32677e9a/</id>
@@ -489,30 +512,6 @@
 &lt;p&gt;首先，启动系统，进入开机界面，在界面中按“e”进入编辑界面。如图&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/</summary>
-      
-    
-    
-    
-    <category term="千辰的小小笔记" scheme="https://qianchenjun.github.io/categories/%E5%8D%83%E8%BE%B0%E7%9A%84%E5%B0%8F%E5%B0%8F%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Linux" scheme="https://qianchenjun.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vmware和CentOS安装</title>
-    <link href="https://qianchenjun.github.io/posts/41fd3eb0/"/>
-    <id>https://qianchenjun.github.io/posts/41fd3eb0/</id>
-    <published>2022-01-24T07:38:58.000Z</published>
-    <updated>2022-01-23T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="vmware安装"><a href="#vmware安装" class="headerlink" title="vmware安装"></a>vmware安装</h2><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241801259.png" alt="image-20220124164640954" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241801432.png" alt="image-20220124164705690" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241801297.png" alt="image-20220124164715792" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241801018.png" alt="image-20220124164727399" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241801725.png" alt="image-20220124164737352" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241801588.png" alt="image-20220124164752043" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241801970.png" alt="image-20220124164806160" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241801323.png" alt="image-20220124164814756" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802993.png" alt="image-20220124164828036" loading="lazy"></p><blockquote><p>密钥：UG5J2-0ME12-M89WY-NPWXX-WQH88</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802836.png" alt="image-20220124164840286" loading="lazy"></p><h2 id="CentOS安装"><a href="#CentOS安装" class="headerlink" title="CentOS安装"></a>CentOS安装</h2><h3 id="检查BIOS虚拟化支持"><a href="#检查BIOS虚拟化支持" class="headerlink" title="检查BIOS虚拟化支持"></a>检查BIOS虚拟化支持</h3><blockquote><p>开机状态按 F10 进入BIOS界面 找到虚拟化设置打开即可。</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802868.png" alt="image-20220124154108861" loading="lazy"><em>bios检查</em></p><blockquote><p>这个地方我在安装的时候没有管，但是还是安装成功了。</p></blockquote><h3 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h3><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802479.png" alt="image-20220124154243759" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802809.png" alt="image-20220124154254231" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802430.png" alt="image-20220124154303320" loading="lazy"><em>稍后安装</em></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802774.png" alt="image-20220124154310577" loading="lazy"><em>linux</em></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802634.png" alt="image-20220124154319042" loading="lazy"><em>选择路径</em></p><blockquote><p>这个地方看自己的实际</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802975.png" alt="image-20220124154551691" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802546.png" alt="image-20220124154601134" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802024.png" alt="image-20220124154613541" loading="lazy"><em>NAT模式</em></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802267.png" alt="image-20220124154632296" loading="lazy"></p><h3 id="正式安装Centos系统"><a href="#正式安装Centos系统" class="headerlink" title="正式安装Centos系统"></a>正式安装Centos系统</h3><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802400.png" alt="image-20220124154653285" loading="lazy"><em>选择下载好的CentOS</em></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802019.png" alt="image-20220124154704516" loading="lazy"><em>开启虚拟机</em></p><blockquote><p>选择第一个，不需要 Test this media ，否则检测时间很长</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802865.png" alt="image-20220124154713178" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802658.png" alt="image-20220124154808510" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802915.png" alt="image-20220124154817206" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802146.png" alt="image-20220124154825215" loading="lazy"></p><blockquote class="danger">    等上一步加载完之后再去选择分区</blockquote><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802984.png" alt="image-20220124154832214" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802269.png" alt="image-20220124154839559" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802736.png" alt="image-20220124154846131" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803947.png" alt="image-20220124154925931" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802256.png" alt="image-20220124154933341" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802095.png" alt="image-20220124154939598" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802679.png" alt="image-20220124154945796" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241802137.png" alt="image-20220124154952903" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803265.png" alt="image-20220124154958544" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803580.png" alt="image-20220124155005426" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803156.png" alt="image-20220124155011860" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803621.png" alt="image-20220124155020263" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803712.png" alt="image-20220124155027062" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803401.png" alt="image-20220124155033579" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803855.png" alt="image-20220124155040032" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803058.png" alt="image-20220124155047530" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803547.png" alt="image-20220124155053804" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803534.png" alt="image-20220124155101837" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803329.png" alt="image-20220124155108344" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803886.png" alt="image-20220124155115067" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803793.png" alt="image-20220124155121133" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803657.png" alt="image-20220124155126903" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803301.png" alt="image-20220124155136739" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803926.png" alt="image-20220124155147076" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803035.png" alt="image-20220124155153817" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803282.png" alt="image-20220124155203384" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803446.png" alt="image-20220124155208110" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803648.png" alt="image-20220124155214211" loading="lazy"></p><p><img src="https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204241803201.png" alt="image-20220124155219092" loading="lazy"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;vmware安装&quot;&gt;&lt;a href=&quot;#vmware安装&quot; class=&quot;headerlink&quot; title=&quot;vmware安装&quot;&gt;&lt;/a&gt;vmware安装&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/QianChen</summary>
       
     
     
