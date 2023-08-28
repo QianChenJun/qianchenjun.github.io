@@ -289,15 +289,15 @@ reward:
   # url: https://github.com/YunYouJun/yunyoujun.github.io/issues/96
   methods:
     - name: 支付宝
-      path: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511314.png
+      path: https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204301511314.png
       color: "#00A3EE"
       icon: icon-alipay-line
     - name: QQ 支付
-      path: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511137.png
+      path: https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204301511137.png
       color: "#12B7F5"
       icon: icon-qq-line
     - name: 微信支付
-      path: https://cdn.jsdelivr.net/gh/QianChenJun/cloudimage@main/img/202204301511629.png
+      path: https://qianchen-image.oss-cn-beijing.aliyuncs.com/blog/202204301511629.png
       color: "#2DC100"
       icon: icon-wechat-pay-line
 
